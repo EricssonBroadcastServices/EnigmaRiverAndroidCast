@@ -10,11 +10,13 @@ public final class EnigmaCastRequest implements IEnigmaCastRequest {
     private final String assetId;
     private final ISession session;
     private final IEnigmaCastPlaybackProperties playbackProperties;
+    private final String language;
 
-    private EnigmaCastRequest(String assetId, ISession session, IEnigmaCastPlaybackProperties playbackProperties) {
+    public EnigmaCastRequest(String assetId, ISession session, IEnigmaCastPlaybackProperties playbackProperties, String language) {
         this.assetId = assetId;
         this.session = session;
         this.playbackProperties = playbackProperties;
+        this.language = language;
     }
 
     @Override
@@ -37,6 +39,10 @@ public final class EnigmaCastRequest implements IEnigmaCastRequest {
             customData.put("playbackProperties", playbackProperties.toJSON());
         }
 
+        if(language != null) {
+            customData.put("language", language);
+        }
+
         return customData;
     }
 
@@ -44,6 +50,7 @@ public final class EnigmaCastRequest implements IEnigmaCastRequest {
         private final String assetId;
         private final ISession session;
         private IEnigmaCastPlaybackProperties playbackProperties = null;
+        private String language = null;
 
         public Builder(String assetId, ISession session) {
             this.assetId = assetId;
@@ -55,8 +62,13 @@ public final class EnigmaCastRequest implements IEnigmaCastRequest {
             return this;
         }
 
+        public Builder setLanguage(String language) {
+            this.language = language;
+            return this;
+        }
+
         public EnigmaCastRequest build() {
-            return new EnigmaCastRequest(assetId, session, playbackProperties);
+            return new EnigmaCastRequest(assetId, session, playbackProperties, language);
         }
     }
 }
