@@ -1,3 +1,3 @@
 # Cast
 
-The cast library, version r3.0.4-BETA-5, for easy Chromecast integration.
+The cast library, version r3.0.4-BETA-6, for easy Chromecast integration.
