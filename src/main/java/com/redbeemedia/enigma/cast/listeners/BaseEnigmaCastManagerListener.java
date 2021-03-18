@@ -1,5 +1,7 @@
 package com.redbeemedia.enigma.cast.listeners;
 
+import androidx.annotation.Nullable;
+
 import com.redbeemedia.enigma.cast.session.IEnigmaCastSession;
 
 public class BaseEnigmaCastManagerListener implements IEnigmaCastManagerListener {
@@ -8,7 +10,7 @@ public class BaseEnigmaCastManagerListener implements IEnigmaCastManagerListener
     }
 
     @Override
-    public void onCastSessionChanged(IEnigmaCastSession oldSession, IEnigmaCastSession newSession) {
+    public void onCastSessionChanged(@Nullable IEnigmaCastSession oldSession, @Nullable IEnigmaCastSession newSession) {
     }
 
     @Override

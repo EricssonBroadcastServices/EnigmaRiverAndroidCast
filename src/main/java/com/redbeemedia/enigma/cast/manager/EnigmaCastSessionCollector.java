@@ -12,6 +12,7 @@ import com.redbeemedia.enigma.core.util.Collector;
 
     @Override
     public void onMessageConversionFailed(CastDevice sender, String message, Exception exception) {
+        exception.printStackTrace();
         forEach(listener -> listener.onMessageConversionFailed(sender, message, exception));
     }
 

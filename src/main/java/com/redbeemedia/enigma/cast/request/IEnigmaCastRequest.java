@@ -6,4 +6,5 @@ import org.json.JSONObject;
 public interface IEnigmaCastRequest {
     String getAssetId();
     JSONObject buildCustomData() throws JSONException;
+    String getSessionToken();
 }

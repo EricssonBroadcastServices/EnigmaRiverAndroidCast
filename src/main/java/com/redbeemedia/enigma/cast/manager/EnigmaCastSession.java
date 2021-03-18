@@ -1,6 +1,7 @@
 package com.redbeemedia.enigma.cast.manager;
 
 import android.os.Handler;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 
@@ -25,6 +26,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 
 /*package-protected*/ class EnigmaCastSession implements IEnigmaCastSession {
+    private static final String TAG = "EnigmaCastSession";
     private static final ICastControlResultHandler NULL_RESULT_HANDLER = new NullResultHandler();
 
     private static final String NAMESPACE = "urn:x-cast:com.ericsson.cast.receiver";
@@ -138,10 +140,12 @@ import java.io.IOException;
 
         @Override
         public void onException(Exception e) {
+            e.printStackTrace();
         }
 
         @Override
         public void onControlFailed(Status status) {
+            Log.d(TAG, "onControlFailed: " + status.getStatus() + " message: " + status.getStatusMessage());
         }
     }
 

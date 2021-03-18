@@ -1,5 +1,7 @@
 package com.redbeemedia.enigma.cast.listeners;
 
+import androidx.annotation.Nullable;
+
 import com.redbeemedia.enigma.cast.session.IEnigmaCastSession;
 import com.redbeemedia.enigma.core.util.IInternalListener;
 
@@ -13,6 +15,6 @@ public interface IEnigmaCastManagerListener extends IInternalListener {
     @Deprecated
     void _dont_implement_IEnigmaCastManagerListener___instead_extend_BaseEnigmaCastManagerListener_();
 
-    void onCastSessionChanged(IEnigmaCastSession oldSession, IEnigmaCastSession newSession);
+    void onCastSessionChanged(@Nullable IEnigmaCastSession oldSession, @Nullable IEnigmaCastSession newSession);
     void onException(Exception e);
 }

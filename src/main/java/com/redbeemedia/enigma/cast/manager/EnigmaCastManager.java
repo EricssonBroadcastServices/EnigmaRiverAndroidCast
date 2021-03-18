@@ -168,7 +168,11 @@ public final class EnigmaCastManager implements IEnigmaCastManager {
                     throw new RuntimeException(e);
                 }
 
-                MediaLoadOptions loadOptions = new MediaLoadOptions.Builder().setAutoplay(true).setCustomData(customData).build();
+                MediaLoadOptions loadOptions = new MediaLoadOptions.Builder()
+                        .setAutoplay(true)
+                        .setCustomData(customData)
+                        .setCredentials(castRequest.getSessionToken())
+                        .build();
 
                 currentEnigmaCastSession.getCastSession().getRemoteMediaClient().load(mediaInfo, loadOptions).addStatusListener(status -> {
                     if (status.isSuccess()) {

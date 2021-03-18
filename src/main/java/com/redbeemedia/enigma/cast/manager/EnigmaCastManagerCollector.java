@@ -1,5 +1,7 @@
 package com.redbeemedia.enigma.cast.manager;
 
+import androidx.annotation.Nullable;
+
 import com.redbeemedia.enigma.cast.listeners.IEnigmaCastManagerListener;
 import com.redbeemedia.enigma.cast.session.IEnigmaCastSession;
 import com.redbeemedia.enigma.core.util.Collector;
@@ -10,12 +12,13 @@ import com.redbeemedia.enigma.core.util.Collector;
     }
 
     @Override
-    public void onCastSessionChanged(IEnigmaCastSession oldSession, IEnigmaCastSession newSession) {
+    public void onCastSessionChanged(@Nullable IEnigmaCastSession oldSession, @Nullable IEnigmaCastSession newSession) {
         forEach(listener -> listener.onCastSessionChanged(oldSession, newSession));
     }
 
     @Override
     public void onException(Exception e) {
+        e.printStackTrace();
         forEach(listener -> listener.onException(e));
     }
 

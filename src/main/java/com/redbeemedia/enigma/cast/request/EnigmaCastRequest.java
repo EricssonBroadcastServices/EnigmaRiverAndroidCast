@@ -1,6 +1,10 @@
 package com.redbeemedia.enigma.cast.request;
 
 import com.redbeemedia.enigma.core.context.EnigmaRiverContext;
+import com.redbeemedia.enigma.core.playable.AssetPlayable;
+import com.redbeemedia.enigma.core.playrequest.IAdInsertionFactory;
+import com.redbeemedia.enigma.core.playrequest.IAdInsertionParameters;
+import com.redbeemedia.enigma.core.playrequest.PlayRequest;
 import com.redbeemedia.enigma.core.session.ISession;
 
 import org.json.JSONException;
@@ -23,11 +27,15 @@ public final class EnigmaCastRequest implements IEnigmaCastRequest {
     public String getAssetId() {
         return assetId;
     }
+    public String getSessionToken() { return session.getSessionToken(); }
 
     @Override
     public JSONObject buildCustomData() throws JSONException {
         JSONObject customData = new JSONObject();
+        //TODO: [2021-03-18] ericssonexposure will not be used by the new cast receiver, so these lines should be removed once the old receiver is dead.
         JSONObject ericssonexposure = new JSONObject();
+        customData.put("customer", session.getBusinessUnit().getCustomerName());
+        customData.put("businessUnit", session.getBusinessUnit().getName());
         ericssonexposure.put("customer", session.getBusinessUnit().getCustomerName());
         ericssonexposure.put("businessUnit", session.getBusinessUnit().getName());
         ericssonexposure.put("sessionToken", session.getSessionToken());
@@ -40,10 +48,38 @@ public final class EnigmaCastRequest implements IEnigmaCastRequest {
         }
 
         if(language != null) {
-            customData.put("language", language);
+            customData.put("locale", language);
         }
 
+        IAdInsertionParameters adInsertionParameters = buildAdInsertionParameters();
+        if(adInsertionParameters != null) {
+            JSONObject adInsertionData = new JSONObject();
+            for(String key : adInsertionParameters.getParameters().keySet()) {
+                adInsertionData.put(key, adInsertionParameters.getParameters().get(key));
+            }
+            customData.put("adInsertionParameters", adInsertionData);
+        }
+        String adobeMediaToken = getPrimetimeMediaToken();
+        if(adobeMediaToken != null) {
+            customData.put("adobePrimetimeToken", adobeMediaToken);
+        }
         return customData;
+    }
+
+    protected IAdInsertionParameters buildAdInsertionParameters() {
+        IAdInsertionFactory adInsertionFactory = EnigmaRiverContext.getAdInsertionFactory();
+        if(adInsertionFactory == null) {
+            return null;
+        }
+        return adInsertionFactory.createParameters(new PlayRequest(new AssetPlayable(assetId), null));
+    }
+
+    protected String getPrimetimeMediaToken() {
+        IAdInsertionFactory adInsertionFactory = EnigmaRiverContext.getAdInsertionFactory();
+        if(adInsertionFactory instanceof IAdInsertionFactory.IAdobeAdInsertionFactory) {
+            return ((IAdInsertionFactory.IAdobeAdInsertionFactory) adInsertionFactory).getAdobePrimetimeMediaToken();
+        }
+        return null;
     }
 
     public static final class Builder {
