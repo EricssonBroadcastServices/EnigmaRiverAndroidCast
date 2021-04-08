@@ -75,9 +75,8 @@ public final class EnigmaCastRequest implements IEnigmaCastRequest {
     }
 
     protected String getPrimetimeMediaToken() {
-        IAdInsertionFactory adInsertionFactory = EnigmaRiverContext.getAdInsertionFactory();
-        if(adInsertionFactory instanceof IAdInsertionFactory.IAdobeAdInsertionFactory) {
-            return ((IAdInsertionFactory.IAdobeAdInsertionFactory) adInsertionFactory).getAdobePrimetimeMediaToken();
+        if (playbackProperties.getPrimetimeToken() != null) {
+            return playbackProperties.getPrimetimeToken().token;
         }
         return null;
     }

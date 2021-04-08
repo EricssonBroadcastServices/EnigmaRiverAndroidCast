@@ -1,5 +1,8 @@
 package com.redbeemedia.enigma.cast.request;
 
+import androidx.annotation.Nullable;
+
+import com.redbeemedia.enigma.core.playrequest.AdobePrimetime;
 import com.redbeemedia.enigma.core.time.Duration;
 
 import org.json.JSONException;
@@ -9,19 +12,26 @@ public final class EnigmaCastPlaybackProperties implements IEnigmaCastPlaybackPr
     private final EnigmaCastPlayFrom playFrom;
     private final Duration startOffset;
     private final Long startTime;
+    private AdobePrimetime adobePrimetime;
 
-    private EnigmaCastPlaybackProperties(EnigmaCastPlayFrom playFrom, Duration startOffset, Long startTime) {
+    private EnigmaCastPlaybackProperties(EnigmaCastPlayFrom playFrom, Duration startOffset, Long startTime, AdobePrimetime adobePrimetime) {
         if(playFrom == null) {
             throw new NullPointerException();
         }
         this.playFrom = playFrom;
         this.startOffset = startOffset;
         this.startTime = startTime;
+        this.adobePrimetime = adobePrimetime;
     }
 
     @Override
     public EnigmaCastPlayFrom getPlayFrom() {
         return playFrom;
+    }
+
+    @Override
+    @Nullable public AdobePrimetime getPrimetimeToken() {
+        return adobePrimetime;
     }
 
     @Override
@@ -41,6 +51,7 @@ public final class EnigmaCastPlaybackProperties implements IEnigmaCastPlaybackPr
         private EnigmaCastPlayFrom playFrom = null;
         private Duration startOffset = null;
         private Long startTime = null;
+        private AdobePrimetime adobePrimetime;
 
         public Builder setPlayFrom(EnigmaCastPlayFrom playFrom) {
             this.playFrom = playFrom;
@@ -50,6 +61,11 @@ public final class EnigmaCastPlaybackProperties implements IEnigmaCastPlaybackPr
         public Builder setStartOffset(Duration startOffset) {
             this.playFrom = EnigmaCastPlayFrom.START_TIME;
             this.startOffset = startOffset;
+            return this;
+        }
+
+        public Builder setAdobePrimetime(@Nullable AdobePrimetime primetime) {
+            this.adobePrimetime = primetime;
             return this;
         }
 
@@ -64,7 +80,7 @@ public final class EnigmaCastPlaybackProperties implements IEnigmaCastPlaybackPr
         }
 
         public EnigmaCastPlaybackProperties build() {
-            return new EnigmaCastPlaybackProperties(playFrom != null ? playFrom : EnigmaCastPlayFrom.DEFAULT_BEHAVIOUR, startOffset, startTime);
+            return new EnigmaCastPlaybackProperties(playFrom != null ? playFrom : EnigmaCastPlayFrom.DEFAULT_BEHAVIOUR, startOffset, startTime, adobePrimetime);
         }
     }
 }
