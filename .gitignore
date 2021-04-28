@@ -1,2 +1,5 @@
 /build
 *.iml
+
+# An annoying file added by Android Studio
+.env
