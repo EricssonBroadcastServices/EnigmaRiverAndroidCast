@@ -1,3 +1,3 @@
 # Cast
 
-The cast library, version r3.2.0-TESTBETA, for easy Chromecast integration.
+The cast library, version r3.2.0-BETA, for easy Chromecast integration.
