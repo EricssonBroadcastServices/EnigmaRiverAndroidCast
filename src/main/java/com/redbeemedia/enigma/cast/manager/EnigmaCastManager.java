@@ -162,8 +162,10 @@ public final class EnigmaCastManager implements IEnigmaCastManager {
             } else {
                 MediaInfo mediaInfo = buildMediaInfo(assetId);
                 JSONObject customData;
+                long startTime;
                 try {
                     customData = castRequest.buildCustomData();
+                    startTime = customData.getJSONObject("playbackProperties").getLong("startTime");
                 } catch (JSONException e) {
                     throw new RuntimeException(e);
                 }
@@ -171,6 +173,7 @@ public final class EnigmaCastManager implements IEnigmaCastManager {
                 MediaLoadOptions loadOptions = new MediaLoadOptions.Builder()
                         .setAutoplay(true)
                         .setCustomData(customData)
+                        .setPlayPosition(startTime)
                         .setCredentials(castRequest.getSessionToken())
                         .build();
 

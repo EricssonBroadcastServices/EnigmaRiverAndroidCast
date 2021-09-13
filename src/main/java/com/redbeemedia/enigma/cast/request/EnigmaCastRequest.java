@@ -1,9 +1,9 @@
 package com.redbeemedia.enigma.cast.request;
 
+import com.redbeemedia.enigma.core.ads.IAdInsertionFactory;
+import com.redbeemedia.enigma.core.ads.IAdInsertionParameters;
 import com.redbeemedia.enigma.core.context.EnigmaRiverContext;
 import com.redbeemedia.enigma.core.playable.AssetPlayable;
-import com.redbeemedia.enigma.core.playrequest.IAdInsertionFactory;
-import com.redbeemedia.enigma.core.playrequest.IAdInsertionParameters;
 import com.redbeemedia.enigma.core.playrequest.PlayRequest;
 import com.redbeemedia.enigma.core.session.ISession;
 
@@ -57,7 +57,7 @@ public final class EnigmaCastRequest implements IEnigmaCastRequest {
             for(String key : adInsertionParameters.getParameters().keySet()) {
                 adInsertionData.put(key, adInsertionParameters.getParameters().get(key));
             }
-            customData.put("adInsertionParameters", adInsertionData);
+            customData.put("adParameters", adInsertionData);
         }
         String adobeMediaToken = getPrimetimeMediaToken();
         if(adobeMediaToken != null) {
