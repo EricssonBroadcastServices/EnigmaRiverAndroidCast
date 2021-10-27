@@ -50,6 +50,7 @@ import java.io.IOException;
     }
 
     public void onEnd() throws IOException {
+        castListeners.onCastEnd();
         castSession.removeMessageReceivedCallbacks(NAMESPACE);
     }
 

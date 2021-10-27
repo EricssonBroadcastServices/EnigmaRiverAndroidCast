@@ -80,6 +80,11 @@ import java.util.List;
     }
 
     @Override
+    public void onCastEnd() {
+        forEach(IEnigmaCastListener::onCastEnd);
+    }
+
+    @Override
     public final void _dont_implement_IEnigmaCastListener___instead_extend_BaseEnigmaCastListener_() {
     }
 }

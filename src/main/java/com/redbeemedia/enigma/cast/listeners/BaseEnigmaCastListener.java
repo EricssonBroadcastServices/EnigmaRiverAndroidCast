@@ -63,4 +63,9 @@ public class BaseEnigmaCastListener implements IEnigmaCastListener {
     @Override
     public void onUnhandledMessageType(String type, JSONObject message) {
     }
+
+    @Override
+    public void onCastEnd() {
+
+    }
 }

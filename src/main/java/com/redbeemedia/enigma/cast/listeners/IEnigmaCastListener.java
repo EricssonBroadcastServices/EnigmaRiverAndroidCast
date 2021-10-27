@@ -65,4 +65,7 @@ public interface IEnigmaCastListener extends IInternalListener {
     void onSegmentMissing(long position);
 
     void onUnhandledMessageType(String type, JSONObject message);
+
+    void onCastEnd();
+
 }

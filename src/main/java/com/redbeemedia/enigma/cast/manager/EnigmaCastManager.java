@@ -78,6 +78,7 @@ public final class EnigmaCastManager implements IEnigmaCastManager {
 
             @Override
             public void onSessionEnding(CastSession castSession) {
+                castListeners.onCastEnd();
             }
 
             @Override

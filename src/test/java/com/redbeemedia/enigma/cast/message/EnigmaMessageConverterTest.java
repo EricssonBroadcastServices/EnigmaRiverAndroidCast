@@ -348,6 +348,11 @@ public class EnigmaMessageConverterTest {
         }
 
         @Override
+        public void onCastEnd() {
+            logMethodCall("onCastEnd");
+        }
+
+        @Override
         public final void _dont_implement_IEnigmaCastListener___instead_extend_BaseEnigmaCastListener_() {
             throw new UnsupportedOperationException();
         }
