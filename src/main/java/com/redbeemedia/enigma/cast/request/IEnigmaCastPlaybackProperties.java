@@ -10,6 +10,10 @@ import org.json.JSONObject;
 public interface IEnigmaCastPlaybackProperties {
     EnigmaCastPlayFrom getPlayFrom();
 
+    String getSelectedSubtitleLanguageCode();
+
+    String getSelectedAudioLanguageCode();
+
     @Nullable AdobePrimetime getPrimetimeToken();
 
     JSONObject toJSON() throws JSONException;

@@ -13,8 +13,15 @@ public final class EnigmaCastPlaybackProperties implements IEnigmaCastPlaybackPr
     private final Duration startOffset;
     private final Long startTime;
     private AdobePrimetime adobePrimetime;
+    private final String selectedSubtitleLanguageCode;
+    private final String selectedAudioLanguageCode;
 
-    private EnigmaCastPlaybackProperties(EnigmaCastPlayFrom playFrom, Duration startOffset, Long startTime, AdobePrimetime adobePrimetime) {
+    private EnigmaCastPlaybackProperties(EnigmaCastPlayFrom playFrom,
+                                         Duration startOffset,
+                                         Long startTime,
+                                         AdobePrimetime adobePrimetime,
+                                         String selectedSubtitleLanguageCode,
+                                         String selectedAudioLanguageCode) {
         if(playFrom == null) {
             throw new NullPointerException();
         }
@@ -22,6 +29,17 @@ public final class EnigmaCastPlaybackProperties implements IEnigmaCastPlaybackPr
         this.startOffset = startOffset;
         this.startTime = startTime;
         this.adobePrimetime = adobePrimetime;
+        this.selectedSubtitleLanguageCode = selectedSubtitleLanguageCode;
+        this.selectedAudioLanguageCode = selectedAudioLanguageCode;
+    }
+
+    @Override
+    public String getSelectedAudioLanguageCode() {
+        return selectedAudioLanguageCode;
+    }
+    @Override
+    public String getSelectedSubtitleLanguageCode() {
+        return selectedSubtitleLanguageCode;
     }
 
     @Override
@@ -52,6 +70,8 @@ public final class EnigmaCastPlaybackProperties implements IEnigmaCastPlaybackPr
         private Duration startOffset = null;
         private Long startTime = null;
         private AdobePrimetime adobePrimetime;
+        private String selectedSubtitleLanguageCode;
+        private String selectedAudioLanguageCode;
 
         public Builder setPlayFrom(EnigmaCastPlayFrom playFrom) {
             this.playFrom = playFrom;
@@ -79,8 +99,16 @@ public final class EnigmaCastPlaybackProperties implements IEnigmaCastPlaybackPr
             return this;
         }
 
+        public void setSelectedSubtitleLanguageCode(String selectedSubtitleLanguageCode) {
+            this.selectedSubtitleLanguageCode = selectedSubtitleLanguageCode;
+        }
+
+        public void setSelectedAudioLanguageCode(String selectedAudioLanguageCode) {
+            this.selectedAudioLanguageCode = selectedAudioLanguageCode;
+        }
+
         public EnigmaCastPlaybackProperties build() {
-            return new EnigmaCastPlaybackProperties(playFrom != null ? playFrom : EnigmaCastPlayFrom.DEFAULT_BEHAVIOUR, startOffset, startTime, adobePrimetime);
+            return new EnigmaCastPlaybackProperties(playFrom != null ? playFrom : EnigmaCastPlayFrom.DEFAULT_BEHAVIOUR, startOffset, startTime, adobePrimetime, selectedSubtitleLanguageCode, selectedAudioLanguageCode);
         }
     }
 }
