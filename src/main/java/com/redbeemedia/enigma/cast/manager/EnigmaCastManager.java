@@ -166,7 +166,7 @@ public final class EnigmaCastManager implements IEnigmaCastManager {
                 long startTime;
                 try {
                     customData = castRequest.buildCustomData();
-                    startTime = customData.getJSONObject("playbackProperties").getLong("startTime");
+                    startTime = customData.getJSONObject("playbackProperties").optLong("startTime", 0);
                 } catch (JSONException e) {
                     throw new RuntimeException(e);
                 }
