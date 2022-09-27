@@ -45,10 +45,10 @@ public final class EnigmaCastRequest implements IEnigmaCastRequest {
 
         if(playbackProperties != null) {
             if (playbackProperties.getSelectedAudioLanguageCode() != null) {
-                customData.put("audioLanguage", playbackProperties.getSelectedAudioLanguageCode());
+                customData.put("subtitleLanguage", playbackProperties.getSelectedAudioLanguageCode());
             }
             if (playbackProperties.getSelectedSubtitleLanguageCode() != null) {
-                customData.put("subtitleLanguage", playbackProperties.getSelectedSubtitleLanguageCode());
+                customData.put("audioLanguage", playbackProperties.getSelectedSubtitleLanguageCode());
             }
             customData.put("playbackProperties", playbackProperties.toJSON());
         }
