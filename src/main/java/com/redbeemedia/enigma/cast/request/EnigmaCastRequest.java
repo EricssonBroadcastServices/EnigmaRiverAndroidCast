@@ -81,7 +81,7 @@ public final class EnigmaCastRequest implements IEnigmaCastRequest {
     }
 
     protected String getPrimetimeMediaToken() {
-        if (playbackProperties.getPrimetimeToken() != null) {
+        if (playbackProperties != null && playbackProperties.getPrimetimeToken() != null) {
             return playbackProperties.getPrimetimeToken().token;
         }
         return null;

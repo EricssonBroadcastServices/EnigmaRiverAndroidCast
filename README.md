@@ -1,3 +1,3 @@
 # Cast
 
-The cast library, version r3.7.21-newjenkins, for easy Chromecast integration.
+The cast library, version r3.7.22, for easy Chromecast integration.
