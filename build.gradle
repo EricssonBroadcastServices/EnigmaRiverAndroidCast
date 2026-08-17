@@ -40,7 +40,7 @@ dependencies {
     if(findProject(':core') != null) {
         implementation project(":core")
     } else {
-        implementation "com.github.EricssonBroadcastServices.EnigmaRiverAndroid:core:r3.7.24"
+        implementation "com.github.EricssonBroadcastServices.EnigmaRiverAndroid:core:r3.8.2-BETA-3"
     }
     api 'com.google.android.gms:play-services-cast-framework:21.0.1'
     testImplementation 'junit:junit:4.12'
@@ -48,6 +48,6 @@ dependencies {
     if(findProject(':internalTestUtils') != null) {
         testImplementation project(":internalTestUtils")
     } else {
-        testImplementation 'com.github.EricssonBroadcastServices.EnigmaRiverAndroid:internalTestUtils:r3.7.24'
+        testImplementation 'com.github.EricssonBroadcastServices.EnigmaRiverAndroid:internalTestUtils:r3.8.2-BETA-3'
     }
 }
